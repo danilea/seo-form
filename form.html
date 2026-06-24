@@ -56,6 +56,9 @@
   <div class="form-container">
     <h2>SEO Content Analysis</h2>
     <form id="seoForm">
+      <label>Access Key:</label>
+      <input type="password" name="access_key" required placeholder="Enter access key">
+
       <label>Brief SEO:</label>
       <textarea name="brief_seo" required>AI brief</textarea>
       
@@ -76,7 +79,7 @@
   </div>
 
   <script>
-    const WEBHOOK_URL = 'https://n8n.mda-digital.com/webhook-test/c534ddad-d3e0-478e-a860-1024dea2987a';
+    const WEBHOOK_URL = 'https://n8n.mda-digital.com/webhook/c534ddad-d3e0-478e-a860-1024dea2987a';
 
     document.getElementById('seoForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -100,10 +103,11 @@
           document.querySelector('textarea[name="brief_seo"]').value = 'AI brief';
           document.querySelector('input[name="cuvant_cheie"]').value = 'ahrefs';
         } else {
-          throw new Error('Submission failed');
+          const error = await response.text();
+          throw new Error(error || 'Submission failed');
         }
       } catch (error) {
-        messageDiv.textContent = '✗ Error submitting form. Please try again.';
+        messageDiv.textContent = '✗ ' + error.message;
         messageDiv.className = 'message error';
       }
     });
