@@ -90,7 +90,7 @@
       <input type="password" name="access_key" required placeholder="Enter access key">
 
       <label>Google Advertiser ID:</label>
-      <textarea name="advertiser_ID" required>Your Google Advertiser ID</textarea>
+      <input type="text" name="advertiser_ID" required>
       
       <label>Start date:</label>
       <input type="date" name="start_date" required value="2026-04-01">
@@ -138,8 +138,9 @@
           messageDiv.className = 'message success';
           e.target.reset();
           // Reset defaults
-          document.querySelector('textarea[name="brief_seo"]').value = 'AI brief';
-          document.querySelector('input[name="cuvant_cheie"]').value = 'ahrefs';
+          document.querySelector('input[name="advertiser_ID"]').value = 'Your Google Advertiser ID';
+          document.querySelector('date[name="start_date"]').value = '2026-04-01';
+          document.querySelector('date[name="end_date"]').value = '2026-06-30';
         } else {
           const error = await response.text();
           throw new Error(error || 'Submission failed');
