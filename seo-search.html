@@ -90,7 +90,7 @@
       <input type="password" name="access_key" required placeholder="Enter access key">
 
       <label>Google Advertiser ID:</label>
-      <input type="text" name="advertiser_ID" required>
+      <input type="text" name="advertiser_ID" required placeholder="Your Google Advertiser ID">
       
       <label>Start date:</label>
       <input type="date" name="start_date" required value="2026-04-01">
@@ -109,7 +109,7 @@
   </div>
 
   <script>
-    const WEBHOOK_URL = 'https://n8n.mda-digital.com/webhook-test/15ba2770-95f0-4a55-95d8-aacd63d9092f';
+    const WEBHOOK_URL = 'https://n8n.mda-digital.com/webhook/15ba2770-95f0-4a55-95d8-aacd63d9092f';
 
     document.getElementById('seoForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -125,6 +125,10 @@
         
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
+
+        if (data.end_date < data.start_date) {
+          throw new Error('End date must be on or after start date');
+        }
         
         const response = await fetch(WEBHOOK_URL, {
           method: 'POST',
@@ -138,9 +142,8 @@
           messageDiv.className = 'message success';
           e.target.reset();
           // Reset defaults
-          document.querySelector('input[name="advertiser_ID"]').value = 'Your Google Advertiser ID';
-          document.querySelector('date[name="start_date"]').value = '2026-04-01';
-          document.querySelector('date[name="end_date"]').value = '2026-06-30';
+          document.querySelector('input[name="start_date"]').value = '2026-04-01';
+          document.querySelector('input[name="end_date"]').value = '2026-06-30';
         } else {
           const error = await response.text();
           throw new Error(error || 'Submission failed');
