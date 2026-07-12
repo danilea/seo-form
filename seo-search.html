@@ -144,7 +144,7 @@
 
         if (response.ok) {
           processingDiv.classList.remove('show');
-          messageDiv.textContent = '✓ Workflow finalizat cu succes. Datele sunt disponibile in Google Sheet';
+          messageDiv.textContent = '✓ ' + await response.text();
           messageDiv.className = 'message success';
           e.target.reset();
           // Reset defaults
