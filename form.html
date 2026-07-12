@@ -148,6 +148,7 @@
           // Reset defaults
           document.querySelector('textarea[name="brief_seo"]').value = 'AI brief';
           document.querySelector('input[name="cuvant_cheie"]').value = 'ahrefs';
+          document.querySelector('input[name="country_codes"]').value = 'ro';
         } else {
           const error = await response.text();
           throw new Error(error || 'Submission failed');
