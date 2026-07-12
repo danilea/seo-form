@@ -136,6 +136,9 @@
           body: JSON.stringify(data)
         });
         
+        const responseText = await response.text();
+
+
         console.log("Response status:", response.status);
         console.log("Response ok:", response.ok);
         console.log("Response headers:", response.headers);
@@ -144,14 +147,14 @@
 
         if (response.ok) {
           processingDiv.classList.remove('show');
-          messageDiv.textContent = '✓ ' + await response.text();
+          messageDiv.textContent = '✓ ' + responseText;
           messageDiv.className = 'message success';
           e.target.reset();
           // Reset defaults
           document.querySelector('input[name="start_date"]').value = '2026-04-01';
           document.querySelector('input[name="end_date"]').value = '2026-06-30';
         } else {
-          const error = await response.text();
+          const error = responseText;
           throw new Error(error || 'Submission failed');
         }
       } catch (error) {
