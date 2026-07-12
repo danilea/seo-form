@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>SEO Content Analysis Form</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     body { 
       font-family: Arial, sans-serif; 
@@ -137,12 +138,12 @@
         } catch {}
 
         if (response.ok) {
+
           processingDiv.classList.remove('show');
-          messageDiv.textContent = '✓ ' + message;
+          messageDiv.innerHTML = '<p>✓ Analysis complete</p>' + marked.parse(message);
           messageDiv.className = 'message success';
           e.target.reset();
           // Reset defaults
-          document.querySelector('textarea[name="brief_seo"]').value = 'AI brief';
           document.querySelector('input[name="cuvant_cheie"]').value = 'ahrefs';
           document.querySelector('input[name="country_codes"]').value = 'ro';
         } else {
