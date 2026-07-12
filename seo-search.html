@@ -136,7 +136,7 @@
           body: JSON.stringify(data)
         });
         
-        const responseText = await response.text();
+        const responseText = await response.text()["message"];
 
 
         console.log("Response status:", response.status);
