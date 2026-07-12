@@ -136,6 +136,12 @@
           body: JSON.stringify(data)
         });
         
+        console.log("Response status:", response.status);
+        console.log("Response ok:", response.ok);
+        console.log("Response headers:", response.headers);
+        console.log("Response text:", await response.text());
+
+
         if (response.ok) {
           processingDiv.classList.remove('show');
           messageDiv.textContent = '✓ Workflow finalizat cu succes. Datele sunt disponibile in Google Sheet';
