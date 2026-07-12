@@ -140,9 +140,16 @@
           body: JSON.stringify(data)
         });
         
+        const rawResponse = await response.text();
+        let message = rawResponse;
+        try {
+          const parsed = JSON.parse(rawResponse);
+          if (parsed.message) message = parsed.message;
+        } catch {}
+
         if (response.ok) {
           processingDiv.classList.remove('show');
-          messageDiv.textContent = '✓ Workflow finalizat cu succes. Datele sunt disponibile in Google Sheet';
+          messageDiv.textContent = '✓ ' + message;
           messageDiv.className = 'message success';
           e.target.reset();
           // Reset defaults
@@ -150,8 +157,7 @@
           document.querySelector('input[name="cuvant_cheie"]').value = 'ahrefs';
           document.querySelector('input[name="country_codes"]').value = 'ro';
         } else {
-          const error = await response.text();
-          throw new Error(error || 'Submission failed');
+          throw new Error(message || 'Submission failed');
         }
       } catch (error) {
         processingDiv.classList.remove('show');

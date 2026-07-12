@@ -136,26 +136,23 @@
           body: JSON.stringify(data)
         });
         
-        const responseText = await response.text()["message"];
-
-
-        console.log("Response status:", response.status);
-        console.log("Response ok:", response.ok);
-        console.log("Response headers:", response.headers);
-        console.log("Response text:", responseText);
-
+        const rawResponse = await response.text();
+        let message = rawResponse;
+        try {
+          const parsed = JSON.parse(rawResponse);
+          if (parsed.message) message = parsed.message;
+        } catch {}
 
         if (response.ok) {
           processingDiv.classList.remove('show');
-          messageDiv.textContent = '✓ ' + responseText;
+          messageDiv.textContent = '✓ ' + message;
           messageDiv.className = 'message success';
           e.target.reset();
           // Reset defaults
           document.querySelector('input[name="start_date"]').value = '2026-04-01';
           document.querySelector('input[name="end_date"]').value = '2026-06-30';
         } else {
-          const error = responseText;
-          throw new Error(error || 'Submission failed');
+          throw new Error(message || 'Submission failed');
         }
       } catch (error) {
         processingDiv.classList.remove('show');
