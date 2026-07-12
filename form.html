@@ -138,9 +138,8 @@
         } catch {}
 
         if (response.ok) {
-
           processingDiv.classList.remove('show');
-          messageDiv.innerHTML = '<p>✓ Analysis complete</p>' + marked.parse(message);
+          messageDiv.textContent = '✓ ' + message;
           messageDiv.className = 'message success';
           e.target.reset();
           // Reset defaults
