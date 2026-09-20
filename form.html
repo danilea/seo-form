@@ -110,6 +110,26 @@
       <label>Codul de tara:</label>
       <input type="text" name="country_codes" required value="ro">
 
+      <label>Intent:</label>
+      <select name="intent" required>
+        <option value="Comercial">Comercial</option>
+        <option value="Ne-comercial">Ne-comercial</option>
+      </select>
+
+      <label>Tipul de pagina:</label>
+      <select name="tipul_de_pagina" required>
+        <option value="Intrebare">Intrebare</option>
+        <option value="Blog">Blog</option>
+        <option value="Lista de Preturi">Lista de Preturi</option>
+      </select>
+
+      <label>Audienta:</label>
+      <select name="audienta" required>
+        <option value="Antreprenori">Antreprenori</option>
+        <option value="Angajati HR">Angajati HR</option>
+        <option value="Profesionisti Marketing">Profesionisti Marketing</option>
+      </select>
+
       <button type="submit" id="submitBtn">Submit</button>
     </form>
 
@@ -163,6 +183,10 @@
           // Reset defaults
           document.querySelector('input[name="cuvant_cheie"]').value = 'ahrefs';
           document.querySelector('input[name="country_codes"]').value = 'ro';
+          document.querySelector('input[name="intent"]').value = "Comercial";
+          document.querySelector('input[name="tipul_de_pagina"]').value = "Intrebare";
+          document.querySelector('input[name="audienta"]').value = "Antreprenori";
+
         } else {
           throw new Error(message || 'Submission failed');
         }
