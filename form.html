@@ -112,15 +112,16 @@
 
       <label>Intent:</label>
       <select name="intent" required>
+        <option value="Informational">Informational</option>
+        <option value="Navigational">Navigational</option>
         <option value="Comercial">Comercial</option>
-        <option value="Ne-comercial">Ne-comercial</option>
+        <option value="Transactional">Transactional</option>
       </select>
 
       <label>Tipul de pagina:</label>
       <select name="tipul_de_pagina" required>
-        <option value="Intrebare">Intrebare</option>
+        <option value="Landing page">LandingPage</option>
         <option value="Blog">Blog</option>
-        <option value="Lista de Preturi">Lista de Preturi</option>
       </select>
 
       <label>Audienta:</label>
@@ -128,6 +129,7 @@
         <option value="Antreprenori">Antreprenori</option>
         <option value="Angajati HR">Angajati HR</option>
         <option value="Profesionisti Marketing">Profesionisti Marketing</option>
+        <option value="" disabled selected>Tip de audienta</option>
       </select>
 
       <button type="submit" id="submitBtn">Submit</button>
